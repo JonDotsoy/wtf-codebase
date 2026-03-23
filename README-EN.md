@@ -15,6 +15,7 @@ Each example comes with real code, production symptoms, and a reasonable alterna
 | # | Title | Category | Damage Level |
 |---|-------|----------|--------------|
 | WTFCODE-1 | [Using a JSON/YAML file as a database](#wtfcode-1---using-a-jsonyamltoml-file-as-a-database) | Persistence | 🔥🔥🔥 |
+| WTFCODE-2 | [String-concatenated URLs](#wtfcode-2---string-concatenated-urls) | Security | 🔥🔥 |
 
 ---
 
@@ -146,6 +147,98 @@ function saveStateAsync(state) {
 | Need queries / indexes | ❌ | ✅ | — |
 | Want to avoid blocking the thread | ❌ | ✅ | ✅ |
 | Corruption risk | High | Low | Medium |
+
+---
+
+## WTFCODE-2 - String-concatenated URLs
+
+### The problem
+
+Building URLs by joining strings is something we've all done. It seems harmless: you know the base, you know the path, you just concatenate the ID or parameter and you're done. The problem appears when the value you insert comes from outside your control: user input, a query parameter, data from a database. Any special character from the URL specification (https://url.spec.whatwg.org/) like `?`, `&`, `#`, `/`, or even spaces can silently break the URL, alter the request structure, or in the worst case, open attack vectors against your users.
+
+### ✅ When it makes sense
+
+- When the values are hardcoded literals that never change (e.g., `"/api/v1/health"`).
+- In one-off scripts where input control is guaranteed and no users are involved.
+
+### ❌ When it doesn't make sense
+
+- When any part of the URL comes from user input, query parameters, or external data.
+- When building query strings with multiple parameters: ordering, encoding, and special characters are your responsibility (and you will get it wrong).
+- When the resulting URL is used in fetch, axios, or another HTTP client in production.
+- When values can contain `?`, `&`, `#`, `/`, or Unicode characters: the URL ends up malformed with no warning.
+
+### The code nobody wants to see in code review
+
+```js
+// Looks innocent...
+const url = "https://my-web/user/" + userId;
+
+// Already starting to hurt
+const url = "https://my-web/products?category=" + category + "&rank=" + rank;
+
+// If userId = "123/admin" → "https://my-web/user/123/admin"  ← silent path traversal
+// If category = "shoes&rank=0&admin=true" → injects extra parameters
+// If rank = "<script>" → depends on the server, but you're already praying
+fetch(url); // 🙏
+```
+
+### The alternatives
+
+#### Option A — Use the standard `URL` API
+
+Available in browsers and Node.js (no imports needed). Handles encoding automatically and makes it impossible to break the URL structure.
+
+```js
+// Path with dynamic value
+const url = new URL("https://my-web/");
+url.pathname = `/user/${userId}`;
+// If userId = "123/admin" → pathname becomes "/user/123%2Fadmin" ← safe
+
+// Query params with multiple values
+const url = new URL("https://my-web/products");
+url.searchParams.set("category", category);
+url.searchParams.set("rank", rank);
+// If category = "shoes&rank=0" → becomes "?category=shoes%26rank%3D0" ← no injection
+
+fetch(url.toString());
+```
+
+#### Option B — Use `node:url` in Node.js environments
+
+```js
+import { URL } from "node:url";
+
+const url = new URL("/api/orders", "https://my-api.internal");
+url.searchParams.set("status", status);
+url.searchParams.set("page", page);
+
+await fetch(url);
+```
+
+#### Option C — Utility helper if you build many URLs
+
+If your codebase has dozens of places building URLs, centralize the logic:
+
+```js
+function buildUrl(base, pathname, params = {}) {
+  const url = new URL(base);
+  if (pathname) url.pathname = pathname;
+  for (const [key, value] of Object.entries(params)) {
+    url.searchParams.set(key, value);
+  }
+  return url;
+}
+
+const url = buildUrl("https://my-web", `/user/${userId}`, { tab: "orders" });
+```
+
+### Summary
+
+- **When is it safe to concatenate URLs?** Only when all segments are hardcoded literals, with no external variables.
+- **What happens if the value contains `?` or `&`?** The URL structure breaks: you can inject extra parameters or reach a different endpoint.
+- **Isn't `encodeURIComponent` enough?** Partially: it encodes the value, but you must apply it manually in every place and it's easy to forget. The `URL` API does it automatically and consistently.
+- **Is the `URL` API available in the browser?** Yes, it's part of the web standard and available in all modern browsers and Node.js since v10.
 
 ---
 
