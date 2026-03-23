@@ -1,3 +1,5 @@
+**Español** | [English](./README-EN.md)
+
 # 🔥 wtf-codebase
 
 > Una colección de malas prácticas reales con explicación de por qué duelen y cómo hacerlo mejor.
@@ -149,7 +151,7 @@ function saveStateAsync(state) {
 
 ## Contribuir
 
-¿Tienes una mala práctica que te persigue en las noches? Abre un PR. El único requisito es que el ejemplo sea real (o muy creíble) y que la explicación sea honesta sobre por qué duele.
+¿Tienes una mala práctica que te persigue en las noches? [Abre un PR](https://github.com/JonDotsoy/wtf-codebase/issues/new). El único requisito es que el ejemplo sea real (o muy creíble) y que la explicación sea honesta sobre por qué duele.
 
 ---
 

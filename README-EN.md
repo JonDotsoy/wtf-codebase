@@ -1,3 +1,5 @@
+[Español](./README.md) | **English**
+
 # 🔥 wtf-codebase
 
 > A collection of real anti-patterns with an explanation of why they hurt and how to do it better.
@@ -149,7 +151,7 @@ function saveStateAsync(state) {
 
 ## Contributing
 
-Do you have an anti-pattern that haunts you at night? Open a PR. The only requirement is that the example is real (or very believable) and that the explanation is honest about why it hurts.
+Do you have an anti-pattern that haunts you at night? [Open a PR](https://github.com/JonDotsoy/wtf-codebase/issues/new). The only requirement is that the example is real (or very believable) and that the explanation is honest about why it hurts.
 
 ---
 
