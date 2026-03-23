@@ -14,11 +14,11 @@ Cada ejemplo viene con código real, síntomas en producción y una alternativa 
 
 | # | Título | Categoría | Nivel de daño |
 |---|--------|-----------|---------------|
-| 01 | [Usar un archivo JSON/YAML como base de datos](#01---usar-un-archivo-jsonyamltoml-como-base-de-datos) | Persistencia | 🔥🔥🔥 |
+| WTFCODE-001 | [Usar un archivo JSON/YAML como base de datos](#wtfcode-001---usar-un-archivo-jsonyamltoml-como-base-de-datos) | Persistencia | 🔥🔥🔥 |
 
 ---
 
-## 01 - Usar un archivo JSON/YAML/TOML como base de datos
+## WTFCODE-001 - Usar un archivo JSON/YAML/TOML como base de datos
 
 ### El problema
 

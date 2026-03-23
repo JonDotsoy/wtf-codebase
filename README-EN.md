@@ -14,11 +14,11 @@ Each example comes with real code, production symptoms, and a reasonable alterna
 
 | # | Title | Category | Damage Level |
 |---|-------|----------|--------------|
-| 01 | [Using a JSON/YAML file as a database](#01---using-a-jsonyamltoml-file-as-a-database) | Persistence | 🔥🔥🔥 |
+| WTFCODE-001 | [Using a JSON/YAML file as a database](#wtfcode-001---using-a-jsonyamltoml-file-as-a-database) | Persistence | 🔥🔥🔥 |
 
 ---
 
-## 01 - Using a JSON/YAML/TOML file as a database
+## WTFCODE-001 - Using a JSON/YAML/TOML file as a database
 
 ### The problem
 
