@@ -1,152 +1,152 @@
-# CLAUDE.md — Guía de contribución para wtf-codebase
+# CLAUDE.md — Contribution guide for wtf-codebase
 
-Este archivo describe cómo agregar nuevas malas prácticas al repositorio y cómo mantener los archivos de documentación actualizados.
-
----
-
-## Estructura del proyecto
-
-- `README.md` — Catálogo principal en español
-- `README-EN.md` — Catálogo en inglés (debe mantenerse sincronizado con README.md)
-- `CLAUDE.md` — Este archivo: instrucciones para contribuir
+This file describes how to add new anti-patterns to the repository and how to keep the documentation files up to date.
 
 ---
 
-## Cómo agregar un nuevo caso
+## Project structure
 
-Cada nuevo escenario o mala práctica debe usar el formato `WTFCODE-<number>`.
-
-El número debe ser consecutivo al último existente en el índice de `README.md`.
-
-### Pasos
-
-1. Agregar una fila al índice en `README.md` y `README-EN.md`
-2. Agregar la sección completa al final del catálogo (antes de la sección "Contribuir") en ambos archivos
-3. El título de la sección debe seguir el formato `## WTFCODE-<number> - <title>`
+- `README.md` — Main catalog in Spanish
+- `README-EN.md` — English catalog (must be kept in sync with README.md)
+- `CLAUDE.md` — This file: instructions for contributing
 
 ---
 
-## Formato de cada caso
+## How to add a new case
 
-Cada entrada debe tener exactamente estas secciones, en este orden:
+Each new scenario or bad practice must use the format `WTFCODE-<number>`.
+
+The number must be consecutive to the last one in the `README.md` index.
+
+### Steps
+
+1. Add a row to the index table in both `README.md` and `README-EN.md`
+2. Add the full section at the end of the catalog (before the "Contributing" section) in both files
+3. The section title must follow the format `## WTFCODE-<number> - <title>`
+
+---
+
+## Format of each case
+
+Each entry must have exactly these sections, in this order:
 
 ### `## WTFCODE-<number> - <title>`
 
-Título principal de la mala práctica.
+Main title of the anti-pattern.
 
-### `### El problema`
+### `### El problema` / `### The problem`
 
-Descripción narrativa del problema. Explica el contexto, por qué es tentador caer en este patrón y cuándo empieza a doler.
+Narrative description of the problem. Explain the context, why the pattern is tempting, and when it starts to hurt.
 
-### `### ✅ Cuándo sí tiene sentido`
+### `### ✅ Cuándo sí tiene sentido` / `### ✅ When it makes sense`
 
-Lista de condiciones bajo las cuales el patrón es aceptable o incluso correcto. Ser honesto: no toda práctica es mala en todos los contextos.
+List of conditions under which the pattern is acceptable or even correct. Be honest: not every practice is bad in every context.
 
-### `### ❌ Cuándo no tiene sentido`
+### `### ❌ Cuándo no tiene sentido` / `### ❌ When it doesn't make sense`
 
-Lista de condiciones o señales que indican que el patrón es un problema. Incluir consecuencias concretas.
+List of conditions or signals that indicate the pattern is a problem. Include concrete consequences.
 
-### `### El código que nadie quiere ver en code review`
+### `### El código que nadie quiere ver en code review` / `### The code nobody wants to see in code review`
 
-Bloque de código real (o muy creíble) que ilustra la mala práctica. Agregar comentarios en el código que expliquen exactamente qué falla.
+A real (or very believable) code block illustrating the bad practice. Add inline comments explaining exactly what fails.
 
-### `### Las alternativas`
+### `### Las alternativas` / `### The alternatives`
 
-Una o más alternativas concretas con código. Cada alternativa lleva un subtítulo `#### Opción A — ...`.
+One or more concrete alternatives with code. Each alternative has a subheading `#### Option A — ...`.
 
-### `### Resumen`
+### `### Resumen` / `### Summary`
 
-Una lista de preguntas frecuentes con sus respuestas cortas. Formato:
+A list of common questions with short answers. Format:
 
 ```markdown
-### Resumen
+### Summary
 
-- **¿Cuándo está bien usar X?** Cuando Y y Z se cumplen.
-- **¿Qué pasa si X ocurre?** El sistema hace W.
-- **¿Hay alguna alternativa más simple?** Sí, considera P o Q.
+- **When is it OK to use X?** When Y and Z conditions are met.
+- **What happens if X occurs?** The system does W.
+- **Is there a simpler alternative?** Yes, consider P or Q.
 ```
 
 ---
 
-## Índice en README.md y README-EN.md
+## Index in README.md and README-EN.md
 
-Cada vez que se agrega un nuevo caso, se debe actualizar la tabla del índice en ambos archivos:
+Every time a new case is added, update the index table in both files:
 
 ```markdown
-| WTFCODE-N | [Título del caso](#ancla) | Categoría | 🔥🔥🔥 |
+| WTFCODE-N | [Case title](#anchor) | Category | 🔥🔥🔥 |
 ```
 
-Categorías sugeridas (usar las existentes antes de crear nuevas):
+Suggested categories (reuse existing ones before creating new ones):
 
-- `Persistencia`
-- `Concurrencia`
-- `Seguridad`
-- `Rendimiento`
-- `Arquitectura`
+- `Persistence`
+- `Concurrency`
+- `Security`
+- `Performance`
+- `Architecture`
 - `Testing`
-- `Dependencias`
+- `Dependencies`
 
-Niveles de daño:
+Damage levels:
 
-- `🔥` — Molesto
-- `🔥🔥` — Problema real
-- `🔥🔥🔥` — Catastrófico en producción
-
----
-
-## Reglas de sincronización README.md / README-EN.md
-
-- Cada sección en español debe tener su equivalente en inglés.
-- Las secciones de código no se traducen (los comentarios del código sí).
-- Los títulos de sección (`### ✅ When it makes sense`, `### ❌ When it doesn't make sense`, `### Summary`) deben traducirse.
-- El orden y la numeración `WTFCODE-<number>` es idéntica en ambos archivos.
+- `🔥` — Annoying
+- `🔥🔥` — Real problem
+- `🔥🔥🔥` — Catastrophic in production
 
 ---
 
-## Ejemplo mínimo de una nueva entrada
+## Sync rules for README.md / README-EN.md
+
+- Every section in Spanish must have its English equivalent.
+- Code blocks are not translated (inline code comments should be).
+- Section headings (`### ✅ When it makes sense`, `### ❌ When it doesn't make sense`, `### Summary`) must be translated.
+- The order and numbering `WTFCODE-<number>` must be identical in both files.
+
+---
+
+## Minimal example of a new entry
 
 ```markdown
-## WTFCODE-2 - <Título>
+## WTFCODE-2 - <Title>
 
 ### El problema
 
-<Descripción del problema>
+<Description of the problem>
 
 ### ✅ Cuándo sí tiene sentido
 
-- <Condición 1>
-- <Condición 2>
+- <Condition 1>
+- <Condition 2>
 
 ### ❌ Cuándo no tiene sentido
 
-- <Señal 1>
-- <Señal 2>
+- <Signal 1>
+- <Signal 2>
 
 ### El código que nadie quiere ver en code review
 
 \`\`\`js
-// Ejemplo de la mala práctica
+// Example of the bad practice
 \`\`\`
 
 ### Las alternativas
 
-#### Opción A — <Nombre de la alternativa>
+#### Opción A — <Alternative name>
 
 \`\`\`js
-// Ejemplo de la alternativa
+// Example of the alternative
 \`\`\`
 
 ### Resumen
 
-- **¿Pregunta común 1?** Respuesta corta.
-- **¿Pregunta común 2?** Respuesta corta.
-- **¿Pregunta común 3?** Respuesta corta.
+- **¿Common question 1?** Short answer.
+- **¿Common question 2?** Short answer.
+- **¿Common question 3?** Short answer.
 ```
 
 ---
 
-## Notas adicionales
+## Additional notes
 
-- `WTFCODE-1` ya existe: usar un archivo JSON/YAML como base de datos.
-- Todos los ejemplos deben ser reales o muy creíbles; no inventar escenarios artificiales.
-- Mantener un tono directo y sin juicio: el objetivo es explicar, no ridiculizar.
+- `WTFCODE-1` already exists: using a JSON/YAML file as a database.
+- All examples must be real or very believable; do not invent artificial scenarios.
+- Keep a direct, non-judgmental tone: the goal is to explain, not to mock.
