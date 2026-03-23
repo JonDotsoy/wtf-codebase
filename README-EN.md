@@ -153,6 +153,8 @@ function saveStateAsync(state) {
 
 Do you have an anti-pattern that haunts you at night? [Open a PR](https://github.com/JonDotsoy/wtf-codebase/issues/new). The only requirement is that the example is real (or very believable) and that the explanation is honest about why it hurts.
 
+Read [CLAUDE.md](./CLAUDE.md) for the exact format of each entry and how to keep files in sync.
+
 ---
 
 <sub>Made with 🔥 and production scars.</sub>

@@ -153,6 +153,8 @@ function saveStateAsync(state) {
 
 ¿Tienes una mala práctica que te persigue en las noches? [Abre un PR](https://github.com/JonDotsoy/wtf-codebase/issues/new). El único requisito es que el ejemplo sea real (o muy creíble) y que la explicación sea honesta sobre por qué duele.
 
+Lee [CLAUDE.md](./CLAUDE.md) para conocer el formato exacto de cada entrada y cómo mantener los archivos sincronizados.
+
 ---
 
 <sub>Hecho con 🔥 y cicatrices de producción.</sub>
